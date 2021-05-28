@@ -46,5 +46,5 @@ jobs:
       run: ls -R
 
     - name: Test
-      run: dotnet run
+      run: dotnet run --configuration Release
       #run: dotnet test --no-restore --verbosity normal
