@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  buildAndRelease:
+  buildAndTest:
 
     strategy:
       matrix:
@@ -38,8 +38,13 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
+    - name: Display structure of files
+      run: ls -R
+
     - name: Test
       run: dotnet run
       #run: dotnet test --no-restore --verbosity normal
