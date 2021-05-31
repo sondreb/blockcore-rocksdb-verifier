@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="SondreB.RocksDB" Version="6.20.3.16" />
+      <PackageReference Include="Blockcore.RocksDB" Version="6.20.3.9" />
     </ItemGroup>
 
 </Project>
