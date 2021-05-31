@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Blockcore.RocksDB" Version="6.20.3.8" />
+      <PackageReference Include="SondreB.RocksDB" Version="6.20.3.12" />
     </ItemGroup>
+
 </Project>
