@@ -75,9 +75,7 @@ jobs:
       working-directory: "${{ github.workspace }}/build-codegen/"
 
 
-
-
-
+      
     # - name: Copy Native Libraries
     #   run: |
     #     install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "libsnappy.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
@@ -96,14 +94,9 @@ jobs:
     # - name: Nuget Pack
     #   run: dotnet pack --no-build -p:Version=${{env.ROCKSDBRELEASE}} -p:AllowUnsafeBlocks=True -p:LangVersion=latest --configuration ${{env.BUILD_CONFIGURATION}} --output "${{github.workspace}}/package/" ${{env.PROJECT_PATH}}
 
-    # - name: Install dependencies
-    #   run: dotnet restore
-    #   working-directory: "${{ github.workspace }}/verifier/"
-
-
-
-
-
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: "${{ github.workspace }}/verifier/"
 
     # - name: Copy Native Libraries
     #   run: |
