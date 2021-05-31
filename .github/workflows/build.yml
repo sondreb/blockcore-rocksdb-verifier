@@ -70,14 +70,6 @@ jobs:
     # - name: Display structure of files (after build)
     #   run: ls -R
 
-    - name: Copy Native Libraries
-      run: |
-        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/librocksdb.dylib"
-        cp "${{github.workspace}}/lib/libzstd.1.dylib" "/usr/local/opt/zstd/lib/libzstd.1.dylib"
-        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "/usr/local/opt/snappy/lib/libsnappy.1.dylib"
-        cp "${{github.workspace}}/lib/liblz4.1.dylib" "/usr/local/opt/lz4/lib/liblz4.1.dylib"
-      shell: bash
-
     - name: Run CodeGen
       run: dotnet run ${{ github.workspace }}/build-codegen/CSharpGen.csproj
       working-directory: "${{ github.workspace }}/build-codegen/"
@@ -91,6 +83,14 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
       working-directory: "${{ github.workspace }}/verifier/"
+
+    # - name: Copy Native Libraries
+    #   run: |
+    #     cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/librocksdb.dylib"
+    #     cp "${{github.workspace}}/lib/libzstd.1.dylib" "/usr/local/opt/zstd/lib/libzstd.1.dylib"
+    #     cp "${{github.workspace}}/lib/libsnappy.1.dylib" "/usr/local/opt/snappy/lib/libsnappy.1.dylib"
+    #     cp "${{github.workspace}}/lib/liblz4.1.dylib" "/usr/local/opt/lz4/lib/liblz4.1.dylib"
+    #   shell: bash
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
