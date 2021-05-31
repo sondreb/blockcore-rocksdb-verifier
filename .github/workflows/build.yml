@@ -74,27 +74,36 @@ jobs:
       run: dotnet run ${{ github.workspace }}/build-codegen/CSharpGen.csproj
       working-directory: "${{ github.workspace }}/build-codegen/"
 
-    - name: Copy Native Libraries
-      run: |
-        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "libsnappy.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
-        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "liblz4.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
-        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "libzstd.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
 
-        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/librocksdb.dylib"
-        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/libzstd.1.dylib"
-        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/libsnappy.1.dylib"
-        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/liblz4.1.dylib"
-      shell: bash
 
-    - name: Build
-      run: dotnet build -p:Version=${{env.ROCKSDBRELEASE}} -p:AllowUnsafeBlocks=True -p:LangVersion=latest --configuration ${{env.BUILD_CONFIGURATION}} ${{env.PROJECT_PATH}}
 
-    - name: Nuget Pack
-      run: dotnet pack --no-build -p:Version=${{env.ROCKSDBRELEASE}} -p:AllowUnsafeBlocks=True -p:LangVersion=latest --configuration ${{env.BUILD_CONFIGURATION}} --output "${{github.workspace}}/package/" ${{env.PROJECT_PATH}}
 
-    - name: Install dependencies
-      run: dotnet restore
-      working-directory: "${{ github.workspace }}/verifier/"
+    # - name: Copy Native Libraries
+    #   run: |
+    #     install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "libsnappy.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
+    #     install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "liblz4.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
+    #     install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "libzstd.1.dylib" ${{github.workspace}}/lib/librocksdb.dylib
+
+    #     cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/librocksdb.dylib"
+    #     cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/libzstd.1.dylib"
+    #     cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/libsnappy.1.dylib"
+    #     cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/csharp/runtimes/osx-x64/native/liblz4.1.dylib"
+    #   shell: bash
+
+    # - name: Build
+    #   run: dotnet build -p:Version=${{env.ROCKSDBRELEASE}} -p:AllowUnsafeBlocks=True -p:LangVersion=latest --configuration ${{env.BUILD_CONFIGURATION}} ${{env.PROJECT_PATH}}
+
+    # - name: Nuget Pack
+    #   run: dotnet pack --no-build -p:Version=${{env.ROCKSDBRELEASE}} -p:AllowUnsafeBlocks=True -p:LangVersion=latest --configuration ${{env.BUILD_CONFIGURATION}} --output "${{github.workspace}}/package/" ${{env.PROJECT_PATH}}
+
+    # - name: Install dependencies
+    #   run: dotnet restore
+    #   working-directory: "${{ github.workspace }}/verifier/"
+
+
+
+
+
 
     # - name: Copy Native Libraries
     #   run: |
