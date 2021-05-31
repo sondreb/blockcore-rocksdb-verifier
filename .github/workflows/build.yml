@@ -121,23 +121,220 @@ jobs:
 
     - name: Copy Native Libraries
       run: |
-        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib"
-        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/libzstd.1.dylib"
-        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/libsnappy.1.dylib"
-        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/liblz4.1.dylib"
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
 
         install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "/Users/runner/work/blockcore-rocksdb-verifier/blockcore-rocksdb-verifier/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
         install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "/Users/runner/work/blockcore-rocksdb-verifier/blockcore-rocksdb-verifier/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
         install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "/Users/runner/work/blockcore-rocksdb-verifier/blockcore-rocksdb-verifier/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
       shell: bash
 
-    - name: Display structure of files
-      run: ls -R
+    - name: Test
+      run: dotnet run --configuration Release
       working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "./libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "./liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "./libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
 
     - name: Test
       run: dotnet run --configuration Release
       working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "../libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "../liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "../libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "@rpath/libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "@rpath/liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "@rpath/libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "@rpath/libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "@rpath/liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "@rpath/libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "@executable_path/libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "@executable_path/liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "@executable_path/libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "@loader_path/libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "@loader_path/liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "@loader_path/libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -change /usr/local/opt/snappy/lib/libsnappy.1.dylib "@executable_path../libsnappy.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/lz4/lib/liblz4.1.dylib "@executable_path../liblz4.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -change /usr/local/opt/zstd/lib/libzstd.1.dylib "@executable_path../libzstd.1.dylib" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -add_rpath @executable_path/../ ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -add_rpath @executable_path ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -add_rpath @rpath ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+        install_name_tool -add_rpath @loader_path ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
+
+    - name: Copy Native Libraries
+      run: |
+        cp "${{github.workspace}}/lib/librocksdb.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/librocksdb.dylib"
+        cp "${{github.workspace}}/lib/libzstd.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libzstd.1.dylib"
+        cp "${{github.workspace}}/lib/libsnappy.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/libsnappy.1.dylib"
+        cp "${{github.workspace}}/lib/liblz4.1.dylib" "${{ github.workspace }}/verifier/bin/Release/netcoreapp3.1/liblz4.1.dylib"
+
+        install_name_tool -add_rpath "/Users/runner/work/blockcore-rocksdb-verifier/blockcore-rocksdb-verifier/verifier/bin/Release/netcoreapp3.1/" ${{ github.workspace }}/verifier//bin/Release/netcoreapp3.1/librocksdb.dylib
+      shell: bash
+
+    - name: Test
+      run: dotnet run --configuration Release
+      working-directory: "${{ github.workspace }}/verifier/"
+      continue-on-error: true
+
 
     # - uses: actions/upload-artifact@v2
     #   with:
